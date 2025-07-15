@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Utilização de IA Completo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 
+        Chosen Palette: Warm Neutrals with Subtle Accents. A base de #F8F7F4 (um branco quente), com texto principal em #1E293B (cinza-azulado escuro). 
+        Os acentos usam tons de azul (#3B82F6), verde (#10B981), âmbar (#F59E0B) e violeta (#8B5CF6) para ícones e botões, criando uma sensação calma e profissional.
+    -->
+    <!-- 
+        Application Structure Plan: A estrutura foi redesenhada para uma página única com rolagem contínua, onde o conteúdo é dividido em seções temáticas principais: Introdução, Política de Uso de IA, Guia Rápido de Boas Práticas e Termo de Responsabilidade. Uma navegação lateral fixa à direita atua como um "scroll spy", destacando a seção atualmente visível na tela e permitindo navegação rápida por âncoras. Essa abordagem melhora a exploração linear e não linear do conteúdo, tornando-o mais digerível e visualmente organizado, especialmente para a Política de Uso, que foi transformada com princípios de legal design para ser mais visual e menos densa que um texto corrido.
+    -->
+    <!-- 
+        Visualization & Content Choices:
+        - Report Info: "Programa de Utilização de Inteligência Artificial na Empresa" (Política de Uso, Guia Rápido, Termo de Responsabilidade).
+        - Goal: Informar, Engajar e Prover Referência de forma abrangente e visualmente atraente.
+        - Viz/Presentation Method:
+            - Política de Uso: Utiliza seções com fundo branco e sombra, cabeçalhos coloridos e ícones Unicode para cada princípio, uso permitido e proibido, quebrando o texto em blocos menores e mais escaneáveis.
+            - Guia Rápido: Mantém o grid de cartões clicáveis com modais para detalhes, ideal para engajamento rápido.
+            - Termo de Responsabilidade: Apresentado como um resumo conciso, focando na ideia central e na obrigatoriedade da assinatura eletrônica.
+        - Interaction:
+            - Navegação Lateral: Links clicáveis com smooth scroll para as seções. O JavaScript atualiza o estado 'active' do link de navegação conforme o usuário rola a página.
+            - Guia Rápido: Clicar em um cartão abre o modal com detalhes da prática.
+        - Justification: A combinação de rolagem contínua com navegação lateral e o aprimoramento visual da Política de Uso (legal design) tornam o programa mais acessível e menos intimidante. O foco em blocos de informação e ícones facilita a compreensão rápida dos pontos-chave, enquanto o modal do guia permite aprofundamento sob demanda. O resumo do Termo de Responsabilidade evita a sobrecarga de texto formal, mantendo a informação essencial.
+        - Library/Method: Vanilla JavaScript para o scroll spy, smooth scroll e controle dos modais. HTML e Tailwind CSS para estrutura, estilo e responsividade.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #1E293B;
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .modal-backdrop {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .icon-symbol {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        .nav-link.active {
+            font-weight: 600;
+            color: #3B82F6;
+            border-left: 4px solid #3B82F6;
+            padding-left: 0.75rem;
+        }
+        .section-header {
+            color: #1E293B;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .policy-section-card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 2rem; /* mb-8 */
+        }
+        .policy-section-card h2 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            color: #1E293B;
+            margin-bottom: 1rem;
+        }
+        .policy-section-card ul {
+            list-style: none; /* Remove default bullet */
+            padding-left: 0;
+        }
+        .policy-section-card ul li {
+            display: flex;
+            align-items: flex-start; /* Aligns icon to top of text */
+            margin-bottom: 0.75rem;
+            color: #4B5563; /* slate-600 */
+        }
+        .policy-section-card ul li span.icon {
+            font-size: 1.25rem; /* text-xl */
+            margin-right: 0.75rem; /* mr-3 */
+            line-height: 1.5rem; /* to align with text */
+            color: #3B82F6; /* Default icon color, can be customized */
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+        .policy-section-card ul li strong {
+            color: #1E293B;
+        }
+        .policy-section-card ul li div {
+            flex-grow: 1; /* Allow text to take remaining space */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="flex flex-col lg:flex-row min-h-screen">
+        <!-- Navegação Lateral Direita (Fixo em telas maiores) -->
+        <nav class="lg:fixed lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-64 p-4 lg:p-8 bg-white lg:bg-transparent shadow-lg lg:shadow-none rounded-lg lg:rounded-none z-40 mb-8 lg:mb-0">
+            <h2 class="text-xl font-bold text-slate-800 mb-4 hidden lg:block">Navegação</h2>
+            <ul class="flex lg:flex-col justify-center lg:justify-start space-x-4 lg:space-x-0 lg:space-y-4">
+                <li><a href="#introducao" class="nav-link block p-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-colors active" data-section="introducao">Introdução</a></li>
+                <li><a href="#politica-uso" class="nav-link block p-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-colors" data-section="politica-uso">Política de Uso de IA</a></li>
+                <li><a href="#guia-rapido" class="nav-link block p-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-colors" data-section="guia-rapido">Guia Rápido de Boas Práticas</a></li>
+                <li><a href="#termo-responsabilidade" class="nav-link block p-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-colors" data-section="termo-responsabilidade">Termo de Responsabilidade</a></li>
+            </ul>
+        </nav>
+
+        <!-- Conteúdo Principal -->
+        <div class="flex-grow container mx-auto px-4 py-8 md:py-12 lg:pr-72">
+            
+            <header class="mb-12" id="introducao">
+                <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Programa de Utilização de IA</h1>
+                <p class="text-md text-slate-700 mt-6 max-w-4xl">Sua referência completa para o uso inteligente, ético e seguro da Inteligência Artificial em nossa empresa.</p>
+                <p class="text-md text-slate-700 mt-6 max-w-4xl">A Sankhya reconhece o potencial transformador da Inteligência Artificial (IA) para impulsionar a inovação, a eficiência e a escala em todas as nossas operações. Acreditamos que a IA, quando utilizada de forma ética e responsável, pode otimizar processos, gerar insights valiosos e aprimorar a experiência de nossos colaboradores e clientes.</p>
+                <p class="text-md text-slate-700 mt-2 max-w-4xl">Para garantir que a adoção da IA ocorra de maneira segura, transparente e alinhada aos nossos valores e à legislação vigente, estabelecemos este Programa de Utilização de IA. Ele visa fornecer diretrizes claras, responsabilidades e boas práticas para todos os profissionais que interagem com ferramentas e sistemas de Inteligência Artificial em suas atividades diárias.</p>
+            </header>
+
+            <!-- Política de Uso de Inteligência Artificial -->
+            <section id="politica-uso" class="mb-12">
+                <h2 class="text-3xl md:text-4xl section-header text-center mb-8">Política de Uso de Inteligência Artificial</h2>
+                <div class="policy-section-card">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">1. Objetivo e Escopo</h2>
+                    <p class="text-slate-600 mb-4">Esta Política estabelece as diretrizes e responsabilidades para a utilização de ferramentas e sistemas de Inteligência Artificial (IA) por todos os colaboradores do Grupo Sankhya. Aplica-se a todos que utilizem ou interajam com IA em suas atividades profissionais, visando promover o uso ético, seguro, responsável e eficiente da IA, garantindo a conformidade legal e a proteção de nossos ativos.</p>
+                </div>
+
+                <div class="policy-section-card">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">2. Princípios Fundamentais para o Uso de IA</h2>
+                    <p class="text-slate-600 mb-4">Nosso uso da IA é guiado por:</p>
+                    <ul>
+                        <li><span class="icon text-blue-500">✅</span> <div><strong>Responsabilidade e Governança:</strong> A Empresa é responsável pelo uso da IA e implementará mecanismos de governança para monitorar e auditar seu uso.</div></li>
+                        <li><span class="icon text-blue-500">🔍</span> <div><strong>Transparência e Explicabilidade:</strong> Buscar-se-á compreender como as ferramentas de IA funcionam e explicar suas decisões quando aplicável, especialmente em contextos críticos.</div></li>
+                        <li><span class="icon text-blue-500">⚖️</span> <div><strong>Equidade e Não Discriminação:</strong> Evitar o uso de IA que perpetue ou crie vieses discriminatórios.</div></li>
+                        <li><span class="icon text-blue-500">🔐</span> <div><strong>Privacidade e Proteção de Dados:</strong> Garantir a conformidade com a Lei Geral de Proteção de Dados (LGPD) e outras regulamentações de privacidade na coleta, processamento e uso de dados pela IA.</div></li>
+                        <li><span class="icon text-blue-500">🛡️</span> <div><strong>Segurança e Resiliência:</strong> Proteger os sistemas de IA contra ataques cibernéticos e garantir sua operação segura.</div></li>
+                        <li><span class="icon text-blue-500">©️</span> <div><strong>Propriedade Intelectual:</strong> Respeitar os direitos de propriedade intelectual de terceiros e proteger os ativos de PI da Empresa.</div></li>
+                        <li><span class="icon text-blue-500">👤</span> <div><strong>Supervisão Humana:</strong> A decisão final e a responsabilidade sobre o resultado da IA sempre pertencerão a um ser humano.</div></li>
+                        <li><span class="icon text-blue-500">🤫</span> <div><strong>Confidencialidade:</strong> Proteger as informações confidenciais da Empresa e de seus clientes.</div></li>
+                    </ul>
+                </div>
+
+                <div class="policy-section-card">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">3. Usos Permitidos de IA</h2>
+                    <p class="text-slate-600 mb-4">A IA é uma aliada para:</p>
+                    <ul>
+                        <li><span class="icon text-emerald-500">⚡</span> <div><strong>Otimização de Processos:</strong> Automação de tarefas e análise de dados.</div></li>
+                        <li><span class="icon text-emerald-500">💡</span> <div><strong>Geração de Insights:</strong> Identificação de tendências e oportunidades.</div></li>
+                        <li><span class="icon text-emerald-500">📊</span> <div><strong>Suporte à Tomada de Decisão:</strong> Fornecimento de recomendações.</div></li>
+                        <li><span class="icon text-emerald-500">✍️</span> <div><strong>Criação de Conteúdo (com revisão humana):</strong> Geração de rascunhos, ideias, textos, imagens, códigos (sempre revisados e aprovados).</div></li>
+                        <li><span class="icon text-emerald-500">💬</span> <div><strong>Atendimento ao Cliente:</strong> Chatbots e assistentes virtuais.</div></li>
+                        <li><span class="icon text-emerald-500">🔬</span> <div><strong>Pesquisa e Desenvolvimento:</strong> Auxílio na pesquisa e análise de dados complexos.</div></li>
+                    </ul>
+                </div>
+
+                <div class="policy-section-card border-l-4 border-rose-500">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">4. Usos PROIBIDOS e Restrições de IA</h2>
+                    <p class="text-slate-600 mb-4">É estritamente proibido o uso de IA para:</p>
+                    <ul>
+                        <li><span class="icon text-rose-500">🚫</span> <div><strong>Inserção de Dados Confidenciais:</strong> Nunca em ferramentas públicas ou não homologadas.</div></li>
+                        <li><span class="icon text-rose-500">❌</span> <div><strong>Decisões Críticas Sem Revisão Humana:</strong> A IA não substitui o julgamento profissional.</div></li>
+                        <li><span class="icon text-rose-500">🤥</span> <div><strong>Geração de Conteúdo Enganoso ou Falso (Deepfakes):</strong> Criar ou disseminar desinformação.</div></li>
+                        <li><span class="icon text-rose-500">⛔</span> <div><strong>Violação de Direitos Autorais e PI:</strong> Infringir direitos de terceiros.</div></li>
+                        <li><span class="icon text-rose-500">👎</span> <div><strong>Discriminação ou Vieses:</strong> Promover preconceitos.</div></li>
+                        <li><span class="icon text-rose-500">🚨</span> <div><strong>Atividades Ilegais ou Antiéticas:</strong> Qualquer uso que viole leis ou nosso Código de Ética.</div></li>
+                        <li><span class="icon text-rose-500">🤬</span> <div><strong>Assédio, Discurso de Ódio ou Conteúdo Ofensivo:</strong> Gerar ou disseminar conteúdo prejudicial.</div></li>
+                    </ul>
+                </div>
+
+                <div class="policy-section-card">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">5. Tratamento de Dados e Propriedade Intelectual</h2>
+                    <p class="text-slate-600 mb-4">Garantimos a segurança e a titularidade:</p>
+                    <ul>
+                        <li><span class="icon text-amber-500">➡️</span> <div><strong>Dados de Entrada (Input):</strong> Assuma que qualquer informação inserida em ferramentas de IA (especialmente as públicas e não homologadas) <strong>pode ser utilizada para treinamento do modelo e, portanto, não é confidencial</strong>. É estritamente proibido o uso de dados pessoais sensíveis, informações sigilosas ou propriedade intelectual do Grupo Sankhya sem a devida base legal e a homologação formal da ferramenta.</div></li>
+                        <li><span class="icon text-amber-500">⬅️</span> <div><strong>Dados de Saída (Output):</strong> Sempre verificar precisão e conformidade. O Grupo Sankhya reivindica PI sobre conteúdo gerado por IA no exercício das funções.</div></li>
+                    </ul>
+                </div>
+
+                <div class="policy-section-card">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">6. Supervisão Humana e Responsabilidade</h2>
+                    <p class="text-slate-600 mb-4">Você é o responsável final:</p>
+                    <ul>
+                        <li><span class="icon text-violet-500">🙋</span> <div>Colaboradores são os únicos responsáveis pelo uso da IA e seus resultados.</div></li>
+                        <li><span class="icon text-violet-500">🧠</span> <div>IA é apoio, não substituto do julgamento profissional.</div></li>
+                        <li><span class="icon text-violet-500">⚠️</span> <div>Uso indevido é de responsabilidade do colaborador.</div></li>
+                    </ul>
+                </div>
+
+                <div class="policy-section-card">
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">7. Treinamento, Consequências e Revisão</h2>
+                    <p class="text-slate-600 mb-4">Nosso compromisso com a melhoria contínua:</p>
+                    <ul>
+                        <li><span class="icon text-teal-500">🎓</span> <div>O Grupo Sankhya promoverá treinamentos e conscientização sobre o uso seguro e ético da IA.</div></li>
+                        <li><span class="icon text-teal-500">⚖️</span> <div>O descumprimento pode gerar sanções disciplinares (advertência, suspensão, justa causa) e medidas legais.</div></li>
+                        <li><span class="icon text-teal-500">🔄</span> <div>Esta Política será revisada periodicamente para adequação a novas tecnologias e legislações.</div></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Guia Rápido de Boas Práticas -->
+            <section id="guia-rapido" class="mb-12">
+                <h2 class="text-3xl md:text-4xl section-header text-center mb-8">Guia Rápido de Boas Práticas em IA</h2>
+                <p class="text-lg text-slate-600 mb-8 text-center">Explore os pilares para um uso inteligente, ético e seguro da Inteligência Artificial em nosso dia a dia. Clique em um cartão para saber mais.</p>
+                <div id="practices-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
+            </section>
+
+            <!-- Termo de Responsabilidade Individual para Uso de IA -->
+            <section id="termo-responsabilidade" class="mb-12">
+                <h2 class="text-3xl md:text-4xl section-header text-center mb-8">Termo de Responsabilidade Individual para Uso de IA</h2>
+                <div class="policy-section-card">
+                    <p class="text-slate-600 mb-4">Este documento formaliza o compromisso de cada colaborador com as diretrizes do Programa de Utilização de Inteligência Artificial do Grupo Sankhya. Ao assiná-lo, o colaborador declara ter lido e compreendido a <strong>Política de Uso de IA</strong> e o <strong>Guia Rápido de Boas Práticas</strong>, comprometendo-se a seguir as regras de uso ético, seguro e responsável das ferramentas de IA.</p>
+                    <p class="text-slate-600 mb-4">O Termo de Responsabilidade reforça a importância da <strong>proteção de dados confidenciais e pessoais</strong>, a <strong>verificação humana</strong> de todo o conteúdo gerado por IA e a <strong>responsabilidade individual</strong> por qualquer uso indevido.</p>
+                    <p class="text-lg font-semibold text-slate-800 mt-6">Obrigação de Assinatura:</p>
+                    <p class="text-slate-600">A assinatura deste Termo é <strong>obrigatória</strong> para todos os colaboradores que utilizam IA em suas atividades. O processo de assinatura ocorrerá por meio de uma <strong>plataforma de assinatura eletrônica</strong>, garantindo a formalidade e a validade legal do compromisso.</p>
+                    <p class="text-slate-600 mt-2">Para mais detalhes sobre o Termo e o processo de assinatura, consulte a área de Pessoas e Cultura ou o Jurídico.</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <div id="modal" class="modal-backdrop fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 hidden z-50">
+        <div id="modal-content" class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 relative transform scale-95 opacity-0">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-500 hover:text-slate-800 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div id="modal-body" class="prose max-w-none">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const practicesData = [
+                {
+                    id: 1,
+                    icon: '🔒',
+                    title: 'Pense Antes de Digitar',
+                    subtitle: 'Dados Confidenciais NUNCA!',
+                    color: 'blue',
+                    content: `
+                        <h2 class="text-2xl font-bold mb-4 text-slate-800">1. Pense Antes de Digitar: Dados Confidenciais NUNCA!</h2>
+                        <p class="mb-4 text-slate-600">A segurança das nossas informações e das de nossos clientes é a prioridade máxima.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Regra de Ouro</h3>
+                                    <p class="text-slate-600">NUNCA insira informações confidenciais, sigilosas, dados pessoais (CPF, RG, endereço, e-mail de clientes/colaboradores), ou propriedade intelectual do Grupo Sankhya (projetos, estratégias, códigos-fonte) em <strong>ferramentas de IA públicas e não homologadas</strong> (ex: ChatGPT, Bard, Midjourney, Copilot sem homologação do Grupo Sankhya, etc.).</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Por quê?</h3>
+                                    <p class="text-slate-600">Essas ferramentas podem usar seus dados para treinar seus modelos, tornando suas informações potencialmente públicas ou acessíveis a terceiros. Pense nisso como falar um segredo em uma praça pública.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 2,
+                    icon: '🤔',
+                    title: 'Verifique Tudo',
+                    subtitle: 'A IA Pode Errar!',
+                    color: 'amber',
+                    content: `
+                        <h2 class="text-2xl font-bold mb-4 text-slate-800">2. Verifique, Verifique e Verifique Novamente: A IA Pode Errar!</h2>
+                        <p class="mb-4 text-slate-600">A Inteligência Artificial é uma ferramenta poderosa, mas não é infalível. Trate-a como um estagiário brilhante, que precisa de supervisão.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-amber-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Não Confie Cegamente</h3>
+                                    <p class="text-slate-600">A IA pode gerar informações imprecisas, enviesadas ou até completamente falsas (as chamadas "alucinações"). Ela não possui senso comum ou a capacidade de verificar fatos no mundo real.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-amber-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Sempre Revise</h3>
+                                    <p class="text-slate-600">Todo conteúdo (textos, imagens, códigos, análises) gerado por IA deve ser <strong>rigorosamente verificado e validado por você</strong> antes de ser utilizado em qualquer contexto, especialmente se for para uso externo ou para decisões críticas.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-amber-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">A Responsabilidade é Sua</h3>
+                                    <p class="text-slate-600">Lembre-se, a responsabilidade final pelo que é produzido e utilizado é sempre sua, não da ferramenta.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 3,
+                    icon: '🤝',
+                    title: 'Use como Assistente',
+                    subtitle: 'Não como Substituto.',
+                    color: 'emerald',
+                    content: `
+                        <h2 class="text-2xl font-bold mb-4 text-slate-800">3. Use a IA como Assistente, Não como Substituto</h2>
+                        <p class="mb-4 text-slate-600">A IA foi projetada para aumentar nossas capacidades, não para anular nosso julgamento profissional.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-emerald-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Ferramenta de Apoio</h3>
+                                    <p class="text-slate-600">Utilize a IA como uma ferramenta poderosa para otimizar, acelerar e gerar ideias. Ela não substitui seu julgamento profissional, sua criatividade, seu senso crítico ou sua experiência acumulada.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-emerald-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Decisão Humana</h3>
+                                    <p class="text-slate-600">Em decisões importantes que afetam clientes, colaboradores ou o negócio, a IA pode fornecer dados e análises valiosas, mas a decisão final e a responsabilidade por ela são sempre humanas.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 4,
+                    icon: '🎯',
+                    title: 'Seja Claro nos Comandos',
+                    subtitle: 'Melhores Inputs, Melhores Outputs.',
+                    color: 'sky',
+                    content: `
+                        <h2 class="text-2xl font-bold mb-4 text-slate-800">4. Seja Claro e Específico nos Comandos (Prompts)</h2>
+                        <p class="mb-4 text-slate-600">A qualidade da sua interação com a IA determina a qualidade do resultado que você obtém.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-sky-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Qualidade do Input = Qualidade do Output</h3>
+                                    <p class="text-slate-600">Quanto mais claro, contextualizado e detalhado for seu comando (prompt), melhor e mais relevante será a resposta da IA. Evite perguntas vagas.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-sky-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Exemplo Prático</h3>
+                                    <p class="text-slate-600">Em vez de pedir: "Escreva um e-mail", use um prompt detalhado como: "Escreva um e-mail formal e cordial para um cliente sobre o lançamento do nosso novo produto X, destacando os benefícios de economia de tempo e aumento de produtividade. Inclua um 'call to action' claro para agendar uma demonstração através do link [link]."</p>
+                                </div>
+                            </li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 5,
+                    icon: '⚖️',
+                    title: 'Cuidado com Vieses',
+                    subtitle: 'Promova a Equidade.',
+                    color: 'violet',
+                    content: `
+                        <h2 class="text-2xl font-bold mb-4 text-slate-800">5. Cuidado com Vieses e Discriminação</h2>
+                        <p class="mb-4 text-slate-600">A IA aprende com dados do mundo real, e esses dados podem conter vieses históricos e sociais. É nossa responsabilidade não perpetuá-los.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-violet-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Resultados Imparciais</h3>
+                                    <p class="text-slate-600">Esteja sempre atento a possíveis vieses (de gênero, raça, idade, etc.) nas respostas da IA. Questione estereótipos e generalizações que possam aparecer.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-violet-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Promova a Equidade</h3>
+                                    <p class="text-slate-600">Se identificar qualquer viés ou conteúdo que possa ser considerado discriminatório, não o utilize. Reformule seu comando ou descarte o resultado. Se for um problema recorrente, reporte à área responsável para que possamos avaliar a ferramenta.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 6,
+                    icon: '©️',
+                    title: 'Respeite a Propriedade Intelectual',
+                    subtitle: 'Proteja o nosso e o dos outros.',
+                    color: 'rose',
+                    content: `
+                        <h2 class="text-2xl font-bold mb-4 text-slate-800">6. Respeite a Propriedade Intelectual</h2>
+                        <p class="mb-4 text-slate-600">A criação e a utilização de conteúdo devem sempre respeitar os direitos autorais e de propriedade intelectual.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-rose-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Direitos Autorais de Terceiros</h3>
+                                    <p class="text-slate-600">Não utilize a IA para gerar conteúdo que infrinja direitos autorais de terceiros. Se a IA gerar um texto, imagem ou código muito parecido com obras existentes e protegidas, revise-o significativamente ou descarte-o para evitar plágio.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-rose-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Seu Trabalho é Nosso</h3>
+                                    <p class="text-slate-600">Lembre-se que todo o conteúdo original e valioso gerado por IA no exercício de suas funções, como parte do seu trabalho, é considerado propriedade do Grupo Sankhya.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    `
+                },
+                 {
+                    id: 7,
+                    icon: '📚',
+                    title: 'Mantenha-se Informado',
+                    subtitle: 'O aprendizado é contínuo.',
+                    color: 'teal',
+                    content: `
+                        <h2 class="text-2xl font-bold mb-4 text-slate-800">7. Mantenha-se Informado e Treinado</h2>
+                        <p class="mb-4 text-slate-600">A Inteligência Artificial é um campo que evolui diariamente. O que é verdade hoje pode mudar amanhã.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Evolução Constante</h3>
+                                    <p class="text-slate-600">Seja curioso e proativo. Participe dos treinamentos oferecidos pela empresa e familiarize-se com as atualizações das nossas políticas e melhores práticas sobre o tema.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-teal-500 mr-3 mt-1">✓</span>
+                                <div>
+                                    <h3 class="font-semibold text-slate-700">Dúvidas? Pergunte!</h3>
+                                    <p class="text-slate-600">A dúvida é o primeiro passo para o uso seguro. Se não tiver certeza sobre como usar uma ferramenta de IA ou sobre a aplicação de alguma regra da política, procure seu gestor ou as áreas de TI e Jurídico antes de prosseguir.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    `
+                }
+            ];
+
+            const grid = document.getElementById('practices-grid');
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalBody = document.getElementById('modal-body');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section, header'); /* Include header for intro section */
+
+            const colorClasses = {
+                blue: 'border-t-blue-500',
+                amber: 'border-t-amber-500',
+                emerald: 'border-t-emerald-500',
+                sky: 'border-t-sky-500',
+                violet: 'border-t-violet-500',
+                rose: 'border-t-rose-500',
+                teal: 'border-t-teal-500'
+            };
+
+            practicesData.forEach(practice => {
+                const card = document.createElement('div');
+                card.className = `card bg-white p-6 rounded-2xl shadow-lg border-t-4 ${colorClasses[practice.color]} cursor-pointer flex flex-col`;
+                card.innerHTML = `
+                    <div class="flex-grow">
+                        <div class="icon-symbol mb-4">${practice.icon}</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">${practice.title}</h3>
+                        <p class="text-slate-600">${practice.subtitle}</p>
+                    </div>
+                `;
+                card.addEventListener('click', () => openModal(practice.content));
+                grid.appendChild(card);
+            });
+            
+            function openModal(content) {
+                modalBody.innerHTML = content;
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.add('opacity-100');
+                    modalContent.classList.remove('scale-95', 'opacity-0');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+
+            function closeModal() {
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                modalContent.classList.add('scale-95', 'opacity-0');
+                modal.classList.remove('opacity-100');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            // Smooth scroll for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20, /* Small offset for better visibility */
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Scroll spy logic
+            window.addEventListener('scroll', () => {
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 50 && pageYOffset < sectionTop + sectionHeight - 50) {
+                        currentSectionId = section.id;
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.section === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Initial active state on load
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+</html>
