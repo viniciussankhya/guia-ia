@@ -95,7 +95,7 @@
         .policy-section-card h2 {
             font-size: 1.5rem;
             font-weight: 600;
-            color: theme('colors.sankhya.dark-green'); /* Títulos dos cards internos da política em verde escuro */
+            color: theme('colors.sankhya.dark-gray'); /* Títulos dos cards internos da política em cinza-azulado */
             margin-bottom: 1rem;
         }
         .policy-section-card ul {
@@ -137,22 +137,17 @@
         }
 
         /* TODOS os cards do Guia Rápido terão a borda superior verde da Sankhya */
-        .card.border-t-blue-500,
-        .card.border-t-amber-500,
-        .card.border-t-emerald-500,
-        .card.border-t-sky-500,
-        .card.border-t-violet-500,
-        .card.border-t-rose-500,
-        .card.border-t-teal-500 { 
-            border-top-color: theme('colors.sankhya.green'); 
+        /* Removendo as classes específicas e garantindo a aplicação única */
+        .card { 
+            border-top-color: theme('colors.sankhya.green') !important; /* Use !important para forçar se necessário, mas o ideal é que a ordem no JS já resolva */
         }
 
         /* Ajustes para o corpo do modal */
         #modal-body h2 {
-            color: theme('colors.sankhya.dark-green');
+            color: theme('colors.sankhya.dark-gray'); /* Títulos dentro do modal em cinza-azulado */
         }
         #modal-body h3 {
-            color: theme('colors.sankhya.dark-gray');
+            color: theme('colors.sankhya.dark-gray'); /* Subtítulos dentro do modal em cinza-azulado */
         }
     </style>
 </head>
@@ -172,7 +167,7 @@
             
             <header class="mb-12" id="introducao">
                 <div class="mb-6">
-                    <img src="https://media.sankhya.com.br/wp-content/uploads/2017/07/Sankhya-fica-entre-as-5-melhores-no-TOP-Open-Corps-1000x675-1.jpg" alt="Logo Sankhya" class="h-16 md:h-20 mb-4 object-contain">
+                    <img src="https://action.org.es/wp-content/uploads/2019/12/Logo-Sankya-nova-para-site.jpg" alt="Logo Sankhya" class="h-16 md:h-20 mb-4 object-contain">
                     </div>
                 <h1 class="text-4xl md:text-5xl font-bold text-sankhya-dark-gray mb-4">Programa de Utilização de IA</h1>
                 <p class="text-md text-sankhya-medium-gray mt-6 max-w-4xl">Sua referência completa para o uso inteligente, ético e seguro da Inteligência Artificial em nossa empresa.</p>
@@ -191,14 +186,14 @@
                     <h2 class="text-2xl font-bold text-sankhya-dark-gray mb-4">2. Princípios Fundamentais para o Uso de IA</h2>
                     <p class="text-sankhya-medium-gray mb-4">Nosso uso da IA é guiado por:</p>
                     <ul>
-                        <li><span class="icon text-blue-500">✅</span> <div><strong>Responsabilidade e Governança:</strong> A Empresa é responsável pelo uso da IA e implementará mecanismos de governança para monitorar e auditar seu uso.</div></li>
-                        <li><span class="icon text-blue-500">🔍</span> <div><strong>Transparência e Explicabilidade:</strong> Buscar-se-á compreender como as ferramentas de IA funcionam e explicar suas decisões quando aplicável, especialmente em contextos críticos.</div></li>
-                        <li><span class="icon text-blue-500">⚖️</span> <div><strong>Equidade e Não Discriminação:</strong> Evitar o uso de IA que perpetue ou crie vieses discriminatórios.</div></li>
-                        <li><span class="icon text-blue-500">🔐</span> <div><strong>Privacidade e Proteção de Dados:</strong> Garantir a conformidade com a Lei Geral de Proteção de Dados (LGPD) e outras regulamentações de privacidade na coleta, processamento e uso de dados pela IA.</div></li>
-                        <li><span class="icon text-blue-500">🛡️</span> <div><strong>Segurança e Resiliência:</strong> Proteger os sistemas de IA contra ataques cibernéticos e garantir sua operação segura.</div></li>
-                        <li><span class="icon text-blue-500">©️</span> <div><strong>Propriedade Intelectual:</strong> Respeitar os direitos de propriedade intelectual de terceiros e proteger os ativos de PI da Empresa.</div></li>
-                        <li><span class="icon text-blue-500">👤</span> <div><strong>Supervisão Humana:</strong> A decisão final e a responsabilidade sobre o resultado da IA sempre pertencerão a um ser humano.</div></li>
-                        <li><span class="icon text-blue-500">🤫</span> <div><strong>Confidencialidade:</strong> Proteger as informações confidenciais da Empresa e de seus clientes.</div></li>
+                        <li><span class="icon text-sankhya-green">✅</span> <div><strong>Responsabilidade e Governança:</strong> A Empresa é responsável pelo uso da IA e implementará mecanismos de governança para monitorar e auditar seu uso.</div></li>
+                        <li><span class="icon text-sankhya-green">🔍</span> <div><strong>Transparência e Explicabilidade:</strong> Buscar-se-á compreender como as ferramentas de IA funcionam e explicar suas decisões quando aplicável, especialmente em contextos críticos.</div></li>
+                        <li><span class="icon text-sankhya-green">⚖️</span> <div><strong>Equidade e Não Discriminação:</strong> Evitar o uso de IA que perpetue ou crie vieses discriminatórios.</div></li>
+                        <li><span class="icon text-sankhya-green">🔐</span> <div><strong>Privacidade e Proteção de Dados:</strong> Garantir a conformidade com a Lei Geral de Proteção de Dados (LGPD) e outras regulamentações de privacidade na coleta, processamento e uso de dados pela IA.</div></li>
+                        <li><span class="icon text-sankhya-green">🛡️</span> <div><strong>Segurança e Resiliência:</strong> Proteger os sistemas de IA contra ataques cibernéticos e garantir sua operação segura.</div></li>
+                        <li><span class="icon text-sankhya-green">©️</span> <div><strong>Propriedade Intelectual:</strong> Respeitar os direitos de propriedade intelectual de terceiros e proteger os ativos de PI da Empresa.</div></li>
+                        <li><span class="icon text-sankhya-green">👤</span> <div><strong>Supervisão Humana:</strong> A decisão final e a responsabilidade sobre o resultado da IA sempre pertencerão a um ser humano.</div></li>
+                        <li><span class="icon text-sankhya-green">🤫</span> <div><strong>Confidencialidade:</strong> Proteger as informações confidenciais da Empresa e de seus clientes.</div></li>
                     </ul>
                 </div>
 
@@ -206,26 +201,26 @@
                     <h2 class="text-2xl font-bold text-sankhya-dark-gray mb-4">3. Usos Permitidos de IA</h2>
                     <p class="text-sankhya-medium-gray mb-4">A IA é uma aliada para:</p>
                     <ul>
-                        <li><span class="icon text-emerald-500">⚡</span> <div><strong>Otimização de Processos:</strong> Automação de tarefas e análise de dados.</div></li>
-                        <li><span class="icon text-emerald-500">💡</span> <div><strong>Geração de Insights:</strong> Identificação de tendências e oportunidades.</div></li>
-                        <li><span class="icon text-emerald-500">📊</span> <div><strong>Suporte à Tomada de Decisão:</strong> Fornecimento de recomendações.</div></li>
-                        <li><span class="icon text-emerald-500">✍️</span> <div><strong>Criação de Conteúdo (com revisão humana):</strong> Geração de rascunhos, ideias, textos, imagens, códigos (sempre revisados e aprovados).</div></li>
-                        <li><span class="icon text-emerald-500">💬</span> <div><strong>Atendimento ao Cliente:</strong> Chatbots e assistentes virtuais.</div></li>
-                        <li><span class="icon text-emerald-500">🔬</span> <div><strong>Pesquisa e Desenvolvimento:</strong> Auxílio na pesquisa e análise de dados complexos.</div></li>
+                        <li><span class="icon text-sankhya-green">⚡</span> <div><strong>Otimização de Processos:</strong> Automação de tarefas e análise de dados.</div></li>
+                        <li><span class="icon text-sankhya-green">💡</span> <div><strong>Geração de Insights:</strong> Identificação de tendências e oportunidades.</div></li>
+                        <li><span class="icon text-sankhya-green">📊</span> <div><strong>Suporte à Tomada de Decisão:</strong> Fornecimento de recomendações.</div></li>
+                        <li><span class="icon text-sankhya-green">✍️</span> <div><strong>Criação de Conteúdo (com revisão humana):</strong> Geração de rascunhos, ideias, textos, imagens, códigos (sempre revisados e aprovados).</div></li>
+                        <li><span class="icon text-sankhya-green">💬</span> <div><strong>Atendimento ao Cliente:</strong> Chatbots e assistentes virtuais.</div></li>
+                        <li><span class="icon text-sankhya-green">🔬</span> <div><strong>Pesquisa e Desenvolvimento:</strong> Auxílio na pesquisa e análise de dados complexos.</div></li>
                     </ul>
                 </div>
 
-                <div class="policy-section-card border-l-4 border-rose-500">
+                <div class="policy-section-card border-l-4 border-sankhya-accent-red">
                     <h2 class="text-2xl font-bold text-sankhya-dark-gray mb-4">4. Usos PROIBIDOS e Restrições de IA</h2>
                     <p class="text-sankhya-medium-gray mb-4">É estritamente proibido o uso de IA para:</p>
                     <ul>
-                        <li><span class="icon text-rose-500">🚫</span> <div><strong>Inserção de Dados Confidenciais:</strong> Nunca em ferramentas públicas ou não homologadas.</div></li>
-                        <li><span class="icon text-rose-500">❌</span> <div><strong>Decisões Críticas Sem Revisão Humana:</strong> A IA não substitui o julgamento profissional.</div></li>
-                        <li><span class="icon text-rose-500">🤥</span> <div><strong>Geração de Conteúdo Enganoso ou Falso (Deepfakes):</strong> Criar ou disseminar desinformação.</div></li>
-                        <li><span class="icon text-rose-500">⛔</span> <div><strong>Violação de Direitos Autorais e PI:</strong> Infringir direitos de terceiros.</div></li>
-                        <li><span class="icon text-rose-500">👎</span> <div><strong>Discriminação ou Vieses:</strong> Promover preconceitos.</div></li>
-                        <li><span class="icon text-rose-500">🚨</span> <div><strong>Atividades Ilegais ou Antiéticas:</strong> Qualquer uso que viole leis ou nosso Código de Ética.</div></li>
-                        <li><span class="icon text-rose-500">🤬</span> <div><strong>Assédio, Discurso de Ódio ou Conteúdo Ofensivo:</strong> Gerar ou disseminar conteúdo prejudicial.</div></li>
+                        <li><span class="icon text-sankhya-accent-red">🚫</span> <div><strong>Inserção de Dados Confidenciais:</strong> Nunca em ferramentas públicas ou não homologadas.</div></li>
+                        <li><span class="icon text-sankhya-accent-red">❌</span> <div><strong>Decisões Críticas Sem Revisão Humana:</strong> A IA não substitui o julgamento profissional.</div></li>
+                        <li><span class="icon text-sankhya-accent-red">🤥</span> <div><strong>Geração de Conteúdo Enganoso ou Falso (Deepfakes):</strong> Criar ou disseminar desinformação.</div></li>
+                        <li><span class="icon text-sankhya-accent-red">⛔</span> <div><strong>Violação de Direitos Autorais e PI:</strong> Infringir direitos de terceiros.</div></li>
+                        <li><span class="icon text-sankhya-accent-red">👎</span> <div><strong>Discriminação ou Vieses:</strong> Promover preconceitos.</div></li>
+                        <li><span class="icon text-sankhya-accent-red">🚨</span> <div><strong>Atividades Ilegais ou Antiéticas:</strong> Qualquer uso que viole leis ou nosso Código de Ética.</div></li>
+                        <li><span class="icon text-sankhya-accent-red">🤬</span> <div><strong>Assédio, Discurso de Ódio ou Conteúdo Ofensivo:</strong> Gerar ou disseminar conteúdo prejudicial.</div></li>
                     </ul>
                 </div>
 
@@ -233,8 +228,8 @@
                     <h2 class="text-2xl font-bold text-sankhya-dark-gray mb-4">5. Tratamento de Dados e Propriedade Intelectual</h2>
                     <p class="text-sankhya-medium-gray mb-4">Garantimos a segurança e a titularidade:</p>
                     <ul>
-                        <li><span class="icon text-amber-500">➡️</span> <div><strong>Dados de Entrada (Input):</strong> Assuma que qualquer informação inserida em ferramentas de IA (especialmente as públicas e não homologadas) <strong>pode ser utilizada para treinamento do modelo e, portanto, não é confidencial</strong>. É estritamente proibido o uso de dados pessoais sensíveis, informações sigilosas ou propriedade intelectual do Grupo Sankhya sem a devida base legal e a homologação formal da ferramenta.</div></li>
-                        <li><span class="icon text-amber-500">⬅️</span> <div><strong>Dados de Saída (Output):</strong> Sempre verificar precisão e conformidade. O Grupo Sankhya reivindica PI sobre conteúdo gerado por IA no exercício das funções.</div></li>
+                        <li><span class="icon text-sankhya-accent-orange">➡️</span> <div><strong>Dados de Entrada (Input):</strong> Assuma que qualquer informação inserida em ferramentas de IA (especialmente as públicas e não homologadas) <strong>pode ser utilizada para treinamento do modelo e, portanto, não é confidencial</strong>. É estritamente proibido o uso de dados pessoais sensíveis, informações sigilosas ou propriedade intelectual do Grupo Sankhya sem a devida base legal e a homologação formal da ferramenta.</div></li>
+                        <li><span class="icon text-sankhya-accent-orange">⬅️</span> <div><strong>Dados de Saída (Output):</strong> Sempre verificar precisão e conformidade. O Grupo Sankhya reivindica PI sobre conteúdo gerado por IA no exercício das funções.</div></li>
                     </ul>
                 </div>
 
@@ -242,9 +237,9 @@
                     <h2 class="text-2xl font-bold text-sankhya-dark-gray mb-4">6. Supervisão Humana e Responsabilidade</h2>
                     <p class="text-sankhya-medium-gray mb-4">Você é o responsável final:</p>
                     <ul>
-                        <li><span class="icon text-violet-500">🙋</span> <div>Colaboradores são os únicos responsáveis pelo uso da IA e seus resultados.</div></li>
-                        <li><span class="icon text-violet-500">🧠</span> <div>IA é apoio, não substituto do julgamento profissional.</div></li>
-                        <li><span class="icon text-violet-500">⚠️</span> <div>Uso indevido é de responsabilidade do colaborador.</div></li>
+                        <li><span class="icon text-sankhya-accent-purple">🙋</span> <div>Colaboradores são os únicos responsáveis pelo uso da IA e seus resultados.</div></li>
+                        <li><span class="icon text-sankhya-accent-purple">🧠</span> <div>IA é apoio, não substituto do julgamento profissional.</div></li>
+                        <li><span class="icon text-sankhya-accent-purple">⚠️</span> <div>Uso indevido é de responsabilidade do colaborador.</div></li>
                     </ul>
                 </div>
 
@@ -252,9 +247,9 @@
                     <h2 class="text-2xl font-bold text-sankhya-dark-gray mb-4">7. Treinamento, Consequências e Revisão</h2>
                     <p class="text-sankhya-medium-gray mb-4">Nosso compromisso com a melhoria contínua:</p>
                     <ul>
-                        <li><span class="icon text-teal-500">🎓</span> <div>O Grupo Sankhya promoverá treinamentos e conscientização sobre o uso seguro e ético da IA.</div></li>
-                        <li><span class="icon text-teal-500">⚖️</span> <div>O descumprimento pode gerar sanções disciplinares (advertência, suspensão, justa causa) e medidas legais.</div></li>
-                        <li><span class="icon text-teal-500">🔄</span> <div>Esta Política será revisada periodicamente para adequação a novas tecnologias e legislações.</div></li>
+                        <li><span class="icon text-sankhya-green">🎓</span> <div>O Grupo Sankhya promoverá treinamentos e conscientização sobre o uso seguro e ético da IA.</div></li>
+                        <li><span class="icon text-sankhya-green">⚖️</span> <div>O descumprimento pode gerar sanções disciplinares (advertência, suspensão, justa causa) e medidas legais.</div></li>
+                        <li><span class="icon text-sankhya-green">🔄</span> <div>Esta Política será revisada periodicamente para adequação a novas tecnologias e legislações.</div></li>
                     </ul>
                 </div>
             </section>
@@ -300,7 +295,9 @@
                     icon: '🔒',
                     title: 'Pense Antes de Digitar',
                     subtitle: 'Dados Confidenciais NUNCA!',
-                    color: 'blue', // O valor 'blue' aqui não importa mais para a borda superior do card, pois será sobrescrito.
+                    // 'color' aqui não influencia mais a borda superior do card,
+                    // mas pode ser usado para outros estilos internos do card se você quiser.
+                    color: 'sankhya-green', 
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">1. Pense Antes de Digitar: Dados Confidenciais NUNCA!</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A segurança das nossas informações e das de nossos clientes é a prioridade máxima.</p>
@@ -327,7 +324,7 @@
                     icon: '🤔',
                     title: 'Verifique Tudo',
                     subtitle: 'A IA Pode Errar!',
-                    color: 'amber', // O valor 'amber' aqui não importa mais para a borda superior do card.
+                    color: 'sankhya-accent-orange',
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">2. Verifique, Verifique e Verifique Novamente: A IA Pode Errar!</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A Inteligência Artificial é uma ferramenta poderosa, mas não é infalível. Trate-a como um estagiário brilhante, que precisa de supervisão.</p>
@@ -361,7 +358,7 @@
                     icon: '🤝',
                     title: 'Use como Assistente',
                     subtitle: 'Não como Substituto.',
-                    color: 'emerald', // O valor 'emerald' aqui não importa mais para a borda superior do card.
+                    color: 'sankhya-green',
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">3. Use a IA como Assistente, Não como Substituto</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A IA foi projetada para aumentar nossas capacidades, não para anular nosso julgamento profissional.</p>
@@ -388,7 +385,7 @@
                     icon: '🎯',
                     title: 'Seja Claro nos Comandos',
                     subtitle: 'Melhores Inputs, Melhores Outputs.',
-                    color: 'sky', // O valor 'sky' aqui não importa mais para a borda superior do card.
+                    color: 'sankhya-accent-blue',
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">4. Seja Claro e Específico nos Comandos (Prompts)</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A qualidade da sua interação com a IA determina a qualidade do resultado que você obtém.</p>
@@ -415,7 +412,7 @@
                     icon: '⚖️',
                     title: 'Cuidado com Vieses',
                     subtitle: 'Promova a Equidade.',
-                    color: 'violet', // O valor 'violet' aqui não importa mais para a borda superior do card.
+                    color: 'sankhya-accent-purple',
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">5. Cuidado com Vieses e Discriminação</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A IA aprende com dados do mundo real, e esses dados podem conter vieses históricos e sociais. É nossa responsabilidade não perpetuá-los.</p>
@@ -442,7 +439,7 @@
                     icon: '©️',
                     title: 'Respeite a Propriedade Intelectual',
                     subtitle: 'Proteja o nosso e o dos outros.',
-                    color: 'rose', // O valor 'rose' aqui não importa mais para a borda superior do card.
+                    color: 'sankhya-accent-red',
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">6. Respeite a Propriedade Intelectual</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A criação e a utilização de conteúdo devem sempre respeitar os direitos autorais e de propriedade intelectual.</p>
@@ -469,7 +466,7 @@
                     icon: '📚',
                     title: 'Mantenha-se Informado',
                     subtitle: 'O aprendizado é contínuo.',
-                    color: 'teal', // O valor 'teal' aqui não importa mais para a borda superior do card.
+                    color: 'sankhya-green',
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">7. Mantenha-se Informado e Treinado</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A Inteligência Artificial é um campo que evolui diariamente. O que é verdade hoje pode mudar amanhã.</p>
@@ -501,25 +498,26 @@
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section, header');
 
-            // Este mapeamento agora é simplificado, pois todos os cards terão a mesma borda superior.
-            // A variável `colorClasses` agora garante que a classe `border-t-sankhya-green` seja aplicada a todos.
+            // colorClasses agora serve apenas para mapear a cor do ÍCONE,
+            // a borda superior do card será sempre sankhya-green.
             const colorClasses = {
-                blue: 'border-t-sankhya-green',
-                amber: 'border-t-sankhya-green', // Alterado para verde Sankhya
-                emerald: 'border-t-sankhya-green', // Alterado para verde Sankhya
-                sky: 'border-t-sankhya-green', // Alterado para verde Sankhya
-                violet: 'border-t-sankhya-green', // Alterado para verde Sankhya
-                rose: 'border-t-sankhya-green', // Alterado para verde Sankhya
-                teal: 'border-t-sankhya-green'  // Alterado para verde Sankhya
+                blue: 'text-sankhya-green',
+                amber: 'text-sankhya-accent-orange',
+                emerald: 'text-sankhya-green',
+                sky: 'text-sankhya-accent-blue',
+                violet: 'text-sankhya-accent-purple',
+                rose: 'text-sankhya-accent-red',
+                teal: 'text-sankhya-green'
             };
 
             practicesData.forEach(practice => {
                 const card = document.createElement('div');
-                // Aplica sempre a borda superior verde da Sankhya
+                // Aplica a borda superior verde da Sankhya diretamente.
+                // A classe da cor do ícone é aplicada separadamente.
                 card.className = `card bg-white p-6 rounded-2xl shadow-lg border-t-4 border-sankhya-green cursor-pointer flex flex-col`;
                 card.innerHTML = `
                     <div class="flex-grow">
-                        <div class="icon-symbol mb-4">${practice.icon}</div>
+                        <div class="icon-symbol mb-4 ${colorClasses[practice.color]}">${practice.icon}</div>
                         <h3 class="text-xl font-bold text-sankhya-dark-gray mb-2">${practice.title}</h3>
                         <p class="text-sankhya-medium-gray">${practice.subtitle}</p>
                     </div>
