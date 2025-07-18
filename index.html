@@ -12,17 +12,20 @@
                 extend: {
                     colors: {
                         sankhya: {
+                            // Cores principais da paleta Sankhya (Verde e Cinza-Azulado)
                             'green': 'rgb(102, 204, 102)',       // Verde principal (RGB: 102, 204, 102)
                             'light-green': 'rgb(230, 255, 230)', // Verde muito claro para fundos/hovers sutis
                             'dark-green': 'rgb(77, 153, 77)',    // Verde mais escuro para títulos/destaque
+
                             'dark-gray': 'rgb(46, 60, 80)',      // Cinza-azulado escuro (RGB: 46, 60, 80)
                             'medium-gray': 'rgb(70, 85, 105)',   // Um tom médio de cinza para textos secundários
-                            'light-bg': '#F8F7F4',               // Branco quente de fundo (mantido do original)
-                            // Cores de acento para manter a diferenciação visual onde necessário
+                            'light-gray': 'rgb(240, 243, 246)',  // Um cinza muito claro para fundos sutis (em vez de branco puro)
+                            
+                            // Cores de acento (mantidas ou ajustadas para harmonizar)
                             'accent-red': 'rgb(239, 68, 68)',    // Vermelho para alertas/proibidos
                             'accent-orange': 'rgb(245, 158, 11)', // Laranja para atenção
                             'accent-purple': 'rgb(139, 92, 246)',// Roxo para ícones específicos
-                            'accent-blue': 'rgb(59, 130, 246)',  // Azul para ícones/elementos específicos (como o 'sky' original)
+                            'accent-blue': 'rgb(59, 130, 246)',  // Azul para ícones/elementos específicos
                         }
                     }
                 }
@@ -37,8 +40,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: theme('colors.sankhya.light-bg');
-            color: theme('colors.sankhya.dark-gray'); /* Texto principal com o novo cinza escuro */
+            background-color: theme('colors.sankhya.light-gray'); /* Fundo sutilmente cinza */
+            color: theme('colors.sankhya.dark-gray'); /* Texto principal com o cinza escuro da Sankhya */
         }
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -61,7 +64,7 @@
         /* Navegação Lateral */
         .nav-link {
             transition: all 0.2s ease-in-out;
-            color: theme('colors.sankhya.dark-gray');
+            color: theme('colors.sankhya.dark-gray'); /* Cor padrão dos links da nav */
             border-left: 4px solid transparent;
         }
         .nav-link:hover {
@@ -78,12 +81,12 @@
         }
 
         .section-header {
-            color: theme('colors.sankhya.dark-green'); /* Títulos das seções com o verde mais escuro */
+            color: theme('colors.sankhya.dark-green'); /* Títulos das seções com o verde mais escuro da Sankhya */
             font-weight: 700;
             margin-bottom: 1.5rem;
         }
         .policy-section-card {
-            background-color: #FFFFFF;
+            background-color: #FFFFFF; /* Fundo dos cards de política branco */
             border-radius: 0.75rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             padding: 1.5rem;
@@ -92,7 +95,7 @@
         .policy-section-card h2 {
             font-size: 1.5rem;
             font-weight: 600;
-            color: theme('colors.sankhya.dark-green'); /* Títulos dos cards internos da política */
+            color: theme('colors.sankhya.dark-green'); /* Títulos dos cards internos da política em verde escuro */
             margin-bottom: 1rem;
         }
         .policy-section-card ul {
@@ -109,17 +112,17 @@
             font-size: 1.25rem;
             margin-right: 0.75rem;
             line-height: 1.5rem;
-            color: theme('colors.sankhya.green'); /* Ícones padrão no verde principal */
+            color: theme('colors.sankhya.green'); /* Ícones padrão no verde principal da Sankhya */
             flex-shrink: 0;
         }
         .policy-section-card ul li strong {
-            color: theme('colors.sankhya.dark-gray');
+            color: theme('colors.sankhya.dark-gray'); /* Texto forte com o cinza escuro */
         }
         .policy-section-card ul li div {
             flex-grow: 1;
         }
 
-        /* Cores específicas dos ícones (ajustadas para as novas variáveis do Tailwind) */
+        /* Cores específicas dos ícones conforme a semântica (agora usando as novas classes Sankhya) */
         .policy-section-card ul li span.icon.text-blue-500 { color: theme('colors.sankhya.green'); } /* Princípios éticos */
         .policy-section-card ul li span.icon.text-emerald-500 { color: theme('colors.sankhya.green'); } /* Usos permitidos */
         .policy-section-card ul li span.icon.text-rose-500 { color: theme('colors.sankhya.accent-red'); } /* Usos proibidos */
@@ -128,13 +131,12 @@
         .policy-section-card ul li span.icon.text-teal-500 { color: theme('colors.sankhya.green'); } /* Treinamento */
         .policy-section-card ul li span.icon.text-sky-500 { color: theme('colors.sankhya.accent-blue'); } /* Seja Claro */
 
-
-        /* Borda lateral vermelha para a seção de Proibidos */
+        /* Borda lateral para a seção de Proibidos (mantido vermelho forte) */
         .policy-section-card.border-l-4.border-rose-500 {
             border-left-color: theme('colors.sankhya.accent-red');
         }
 
-        /* Borda superior dos cards do Guia Rápido (usando as novas classes) */
+        /* Borda superior dos cards do Guia Rápido (usando as novas classes Sankhya) */
         .card.border-t-blue-500 { border-top-color: theme('colors.sankhya.green'); }
         .card.border-t-amber-500 { border-top-color: theme('colors.sankhya.accent-orange'); }
         .card.border-t-emerald-500 { border-top-color: theme('colors.sankhya.green'); }
@@ -142,7 +144,6 @@
         .card.border-t-violet-500 { border-top-color: theme('colors.sankhya.accent-purple'); }
         .card.border-t-rose-500 { border-top-color: theme('colors.sankhya.accent-red'); }
         .card.border-t-teal-500 { border-top-color: theme('colors.sankhya.green'); }
-
 
         /* Ajustes para o corpo do modal */
         #modal-body h2 {
@@ -158,10 +159,10 @@
     <div class="flex flex-col lg:flex-row min-h-screen">
         <nav class="lg:fixed lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-64 p-4 lg:p-8 bg-white lg:bg-transparent shadow-lg lg:shadow-none rounded-lg lg:rounded-none z-40 mb-8 lg:mb-0">
             <ul class="flex lg:flex-col justify-center lg:justify-start space-x-4 lg:space-x-0 lg:space-y-4">
-                <li><a href="#introducao" class="nav-link block p-2 rounded-lg text-sankhya-dark-gray hover:text-sankhya-dark-green hover:bg-sankhya-light-green transition-colors active" data-section="introducao">Introdução</a></li>
-                <li><a href="#politica-uso" class="nav-link block p-2 rounded-lg text-sankhya-dark-gray hover:text-sankhya-dark-green hover:bg-sankhya-light-green transition-colors" data-section="politica-uso">Política de Uso de IA</a></li>
-                <li><a href="#guia-rapido" class="nav-link block p-2 rounded-lg text-sankhya-dark-gray hover:text-sankhya-dark-green hover:bg-sankhya-light-green transition-colors" data-section="guia-rapido">Guia Rápido de Boas Práticas</a></li>
-                <li><a href="#termo-responsabilidade" class="nav-link block p-2 rounded-lg text-sankhya-dark-gray hover:text-sankhya-dark-green hover:bg-sankhya-light-green transition-colors" data-section="termo-responsabilidade">Termo de Responsabilidade</a></li>
+                <li><a href="#introducao" class="nav-link block p-2 rounded-lg" data-section="introducao">Introdução</a></li>
+                <li><a href="#politica-uso" class="nav-link block p-2 rounded-lg" data-section="politica-uso">Política de Uso de IA</a></li>
+                <li><a href="#guia-rapido" class="nav-link block p-2 rounded-lg" data-section="guia-rapido">Guia Rápido de Boas Práticas</a></li>
+                <li><a href="#termo-responsabilidade" class="nav-link block p-2 rounded-lg" data-section="termo-responsabilidade">Termo de Responsabilidade</a></li>
             </ul>
         </nav>
 
@@ -297,7 +298,7 @@
                     icon: '🔒',
                     title: 'Pense Antes de Digitar',
                     subtitle: 'Dados Confidenciais NUNCA!',
-                    color: 'blue', // Agora mapeado para sankhya-green
+                    color: 'blue', // Mapeado para sankhya-green
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">1. Pense Antes de Digitar: Dados Confidenciais NUNCA!</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A segurança das nossas informações e das de nossos clientes é a prioridade máxima.</p>
@@ -324,7 +325,7 @@
                     icon: '🤔',
                     title: 'Verifique Tudo',
                     subtitle: 'A IA Pode Errar!',
-                    color: 'amber', // Agora mapeado para sankhya-accent-orange
+                    color: 'amber', // Mapeado para sankhya-accent-orange
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">2. Verifique, Verifique e Verifique Novamente: A IA Pode Errar!</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A Inteligência Artificial é uma ferramenta poderosa, mas não é infalível. Trate-a como um estagiário brilhante, que precisa de supervisão.</p>
@@ -358,7 +359,7 @@
                     icon: '🤝',
                     title: 'Use como Assistente',
                     subtitle: 'Não como Substituto.',
-                    color: 'emerald', // Agora mapeado para sankhya-green
+                    color: 'emerald', // Mapeado para sankhya-green
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">3. Use a IA como Assistente, Não como Substituto</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A IA foi projetada para aumentar nossas capacidades, não para anular nosso julgamento profissional.</p>
@@ -385,7 +386,7 @@
                     icon: '🎯',
                     title: 'Seja Claro nos Comandos',
                     subtitle: 'Melhores Inputs, Melhores Outputs.',
-                    color: 'sky', // Agora mapeado para sankhya-accent-blue
+                    color: 'sky', // Mapeado para sankhya-accent-blue
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">4. Seja Claro e Específico nos Comandos (Prompts)</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A qualidade da sua interação com a IA determina a qualidade do resultado que você obtém.</p>
@@ -412,7 +413,7 @@
                     icon: '⚖️',
                     title: 'Cuidado com Vieses',
                     subtitle: 'Promova a Equidade.',
-                    color: 'violet', // Agora mapeado para sankhya-accent-purple
+                    color: 'violet', // Mapeado para sankhya-accent-purple
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">5. Cuidado com Vieses e Discriminação</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A IA aprende com dados do mundo real, e esses dados podem conter vieses históricos e sociais. É nossa responsabilidade não perpetuá-los.</p>
@@ -439,7 +440,7 @@
                     icon: '©️',
                     title: 'Respeite a Propriedade Intelectual',
                     subtitle: 'Proteja o nosso e o dos outros.',
-                    color: 'rose', // Agora mapeado para sankhya-accent-red
+                    color: 'rose', // Mapeado para sankhya-accent-red
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">6. Respeite a Propriedade Intelectual</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A criação e a utilização de conteúdo devem sempre respeitar os direitos autorais e de propriedade intelectual.</p>
@@ -466,7 +467,7 @@
                     icon: '📚',
                     title: 'Mantenha-se Informado',
                     subtitle: 'O aprendizado é contínuo.',
-                    color: 'teal', // Agora mapeado para sankhya-green
+                    color: 'teal', // Mapeado para sankhya-green
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">7. Mantenha-se Informado e Treinado</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A Inteligência Artificial é um campo que evolui diariamente. O que é verdade hoje pode mudar amanhã.</p>
@@ -498,10 +499,6 @@
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section, header');
 
-            // Mapeamento das cores originais para as novas classes Sankhya.
-            // As classes de cor nos `practicesData` (ex: `color: 'blue'`)
-            // correspondem às classes Tailwind definidas no CSS (ex: `border-t-blue-500`),
-            // que por sua vez agora mapeiam para suas cores Sankhya personalizadas.
             const colorClasses = {
                 blue: 'border-t-sankhya-green',
                 amber: 'border-t-sankhya-accent-orange',
