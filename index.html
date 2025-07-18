@@ -32,7 +32,6 @@
             }
         }
     </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -138,9 +137,9 @@
 
         /* TODOS os cards do Guia Rápido terão a borda superior verde da Sankhya */
         /* Removendo as classes específicas e garantindo a aplicação única */
-        .card { 
-            border-top-color: theme('colors.sankhya.green') !important; /* Use !important para forçar se necessário, mas o ideal é que a ordem no JS já resolva */
-        }
+        /* Removi as regras específicas de border-top-color do CSS para o .card,
+           pois a classe será aplicada diretamente no JS.
+           Isso evita conflitos de especificidade. */
 
         /* Ajustes para o corpo do modal */
         #modal-body h2 {
@@ -295,8 +294,6 @@
                     icon: '🔒',
                     title: 'Pense Antes de Digitar',
                     subtitle: 'Dados Confidenciais NUNCA!',
-                    // 'color' aqui não influencia mais a borda superior do card,
-                    // mas pode ser usado para outros estilos internos do card se você quiser.
                     color: 'sankhya-green', 
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">1. Pense Antes de Digitar: Dados Confidenciais NUNCA!</h2>
@@ -498,26 +495,13 @@
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section, header');
 
-            // colorClasses agora serve apenas para mapear a cor do ÍCONE,
-            // a borda superior do card será sempre sankhya-green.
-            const colorClasses = {
-                blue: 'text-sankhya-green',
-                amber: 'text-sankhya-accent-orange',
-                emerald: 'text-sankhya-green',
-                sky: 'text-sankhya-accent-blue',
-                violet: 'text-sankhya-accent-purple',
-                rose: 'text-sankhya-accent-red',
-                teal: 'text-sankhya-green'
-            };
-
             practicesData.forEach(practice => {
                 const card = document.createElement('div');
-                // Aplica a borda superior verde da Sankhya diretamente.
-                // A classe da cor do ícone é aplicada separadamente.
+                // Aplica a borda superior verde da Sankhya diretamente no className
                 card.className = `card bg-white p-6 rounded-2xl shadow-lg border-t-4 border-sankhya-green cursor-pointer flex flex-col`;
                 card.innerHTML = `
                     <div class="flex-grow">
-                        <div class="icon-symbol mb-4 ${colorClasses[practice.color]}">${practice.icon}</div>
+                        <div class="icon-symbol mb-4 text-${practice.color}">${practice.icon}</div>
                         <h3 class="text-xl font-bold text-sankhya-dark-gray mb-2">${practice.title}</h3>
                         <p class="text-sankhya-medium-gray">${practice.subtitle}</p>
                     </div>
