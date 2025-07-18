@@ -41,7 +41,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: theme('colors.sankhya.light-gray'); /* Fundo sutilmente cinza */
-            color: theme('colors.sankhya.dark-gray'); /* Texto principal com o cinza escuro da Sankhya */
+            color: theme('colors.sankhya.dark-gray'); /* Texto principal com o novo cinza escuro */
         }
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -136,14 +136,16 @@
             border-left-color: theme('colors.sankhya.accent-red');
         }
 
-        /* Borda superior dos cards do Guia Rápido (usando as novas classes Sankhya) */
-        .card.border-t-blue-500 { border-top-color: theme('colors.sankhya.green'); }
-        .card.border-t-amber-500 { border-top-color: theme('colors.sankhya.accent-orange'); }
-        .card.border-t-emerald-500 { border-top-color: theme('colors.sankhya.green'); }
-        .card.border-t-sky-500 { border-top-color: theme('colors.sankhya.accent-blue'); }
-        .card.border-t-violet-500 { border-top-color: theme('colors.sankhya.accent-purple'); }
-        .card.border-t-rose-500 { border-top-color: theme('colors.sankhya.accent-red'); }
-        .card.border-t-teal-500 { border-top-color: theme('colors.sankhya.green'); }
+        /* TODOS os cards do Guia Rápido terão a borda superior verde da Sankhya */
+        .card.border-t-blue-500,
+        .card.border-t-amber-500,
+        .card.border-t-emerald-500,
+        .card.border-t-sky-500,
+        .card.border-t-violet-500,
+        .card.border-t-rose-500,
+        .card.border-t-teal-500 { 
+            border-top-color: theme('colors.sankhya.green'); 
+        }
 
         /* Ajustes para o corpo do modal */
         #modal-body h2 {
@@ -170,7 +172,7 @@
             
             <header class="mb-12" id="introducao">
                 <div class="mb-6">
-                    <img src="https://action.org.es/wp-content/uploads/2019/12/Logo-Sankya-nova-para-site.jpg" alt="Logo Sankhya" class="h-16 md:h-20 mb-4 object-contain">
+                    <img src="https://media.sankhya.com.br/wp-content/uploads/2017/07/Sankhya-fica-entre-as-5-melhores-no-TOP-Open-Corps-1000x675-1.jpg" alt="Logo Sankhya" class="h-16 md:h-20 mb-4 object-contain">
                     </div>
                 <h1 class="text-4xl md:text-5xl font-bold text-sankhya-dark-gray mb-4">Programa de Utilização de IA</h1>
                 <p class="text-md text-sankhya-medium-gray mt-6 max-w-4xl">Sua referência completa para o uso inteligente, ético e seguro da Inteligência Artificial em nossa empresa.</p>
@@ -298,7 +300,7 @@
                     icon: '🔒',
                     title: 'Pense Antes de Digitar',
                     subtitle: 'Dados Confidenciais NUNCA!',
-                    color: 'blue', // Mapeado para sankhya-green
+                    color: 'blue', // O valor 'blue' aqui não importa mais para a borda superior do card, pois será sobrescrito.
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">1. Pense Antes de Digitar: Dados Confidenciais NUNCA!</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A segurança das nossas informações e das de nossos clientes é a prioridade máxima.</p>
@@ -325,7 +327,7 @@
                     icon: '🤔',
                     title: 'Verifique Tudo',
                     subtitle: 'A IA Pode Errar!',
-                    color: 'amber', // Mapeado para sankhya-accent-orange
+                    color: 'amber', // O valor 'amber' aqui não importa mais para a borda superior do card.
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">2. Verifique, Verifique e Verifique Novamente: A IA Pode Errar!</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A Inteligência Artificial é uma ferramenta poderosa, mas não é infalível. Trate-a como um estagiário brilhante, que precisa de supervisão.</p>
@@ -359,7 +361,7 @@
                     icon: '🤝',
                     title: 'Use como Assistente',
                     subtitle: 'Não como Substituto.',
-                    color: 'emerald', // Mapeado para sankhya-green
+                    color: 'emerald', // O valor 'emerald' aqui não importa mais para a borda superior do card.
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">3. Use a IA como Assistente, Não como Substituto</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A IA foi projetada para aumentar nossas capacidades, não para anular nosso julgamento profissional.</p>
@@ -386,7 +388,7 @@
                     icon: '🎯',
                     title: 'Seja Claro nos Comandos',
                     subtitle: 'Melhores Inputs, Melhores Outputs.',
-                    color: 'sky', // Mapeado para sankhya-accent-blue
+                    color: 'sky', // O valor 'sky' aqui não importa mais para a borda superior do card.
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">4. Seja Claro e Específico nos Comandos (Prompts)</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A qualidade da sua interação com a IA determina a qualidade do resultado que você obtém.</p>
@@ -413,7 +415,7 @@
                     icon: '⚖️',
                     title: 'Cuidado com Vieses',
                     subtitle: 'Promova a Equidade.',
-                    color: 'violet', // Mapeado para sankhya-accent-purple
+                    color: 'violet', // O valor 'violet' aqui não importa mais para a borda superior do card.
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">5. Cuidado com Vieses e Discriminação</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A IA aprende com dados do mundo real, e esses dados podem conter vieses históricos e sociais. É nossa responsabilidade não perpetuá-los.</p>
@@ -440,7 +442,7 @@
                     icon: '©️',
                     title: 'Respeite a Propriedade Intelectual',
                     subtitle: 'Proteja o nosso e o dos outros.',
-                    color: 'rose', // Mapeado para sankhya-accent-red
+                    color: 'rose', // O valor 'rose' aqui não importa mais para a borda superior do card.
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">6. Respeite a Propriedade Intelectual</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A criação e a utilização de conteúdo devem sempre respeitar os direitos autorais e de propriedade intelectual.</p>
@@ -467,7 +469,7 @@
                     icon: '📚',
                     title: 'Mantenha-se Informado',
                     subtitle: 'O aprendizado é contínuo.',
-                    color: 'teal', // Mapeado para sankhya-green
+                    color: 'teal', // O valor 'teal' aqui não importa mais para a borda superior do card.
                     content: `
                         <h2 class="text-2xl font-bold mb-4 text-sankhya-dark-gray">7. Mantenha-se Informado e Treinado</h2>
                         <p class="mb-4 text-sankhya-medium-gray">A Inteligência Artificial é um campo que evolui diariamente. O que é verdade hoje pode mudar amanhã.</p>
@@ -499,19 +501,22 @@
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('section, header');
 
+            // Este mapeamento agora é simplificado, pois todos os cards terão a mesma borda superior.
+            // A variável `colorClasses` agora garante que a classe `border-t-sankhya-green` seja aplicada a todos.
             const colorClasses = {
                 blue: 'border-t-sankhya-green',
-                amber: 'border-t-sankhya-accent-orange',
-                emerald: 'border-t-sankhya-green',
-                sky: 'border-t-sankhya-accent-blue',
-                violet: 'border-t-sankhya-accent-purple',
-                rose: 'border-t-sankhya-accent-red',
-                teal: 'border-t-sankhya-green'
+                amber: 'border-t-sankhya-green', // Alterado para verde Sankhya
+                emerald: 'border-t-sankhya-green', // Alterado para verde Sankhya
+                sky: 'border-t-sankhya-green', // Alterado para verde Sankhya
+                violet: 'border-t-sankhya-green', // Alterado para verde Sankhya
+                rose: 'border-t-sankhya-green', // Alterado para verde Sankhya
+                teal: 'border-t-sankhya-green'  // Alterado para verde Sankhya
             };
 
             practicesData.forEach(practice => {
                 const card = document.createElement('div');
-                card.className = `card bg-white p-6 rounded-2xl shadow-lg border-t-4 ${colorClasses[practice.color]} cursor-pointer flex flex-col`;
+                // Aplica sempre a borda superior verde da Sankhya
+                card.className = `card bg-white p-6 rounded-2xl shadow-lg border-t-4 border-sankhya-green cursor-pointer flex flex-col`;
                 card.innerHTML = `
                     <div class="flex-grow">
                         <div class="icon-symbol mb-4">${practice.icon}</div>
